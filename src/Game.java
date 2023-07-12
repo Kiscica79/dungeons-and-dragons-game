@@ -18,6 +18,7 @@ public class Game {
         // Példányosíts egy Charactert (hívd meg a konstruktorát) ezzel a változóval!
         Character player  = new Character(user);
 
+        Monster selectedMonster = new Monster("dragon", 20);
 
         // Készíts egy 3 hosszúságú tömböt Monster-ekből!
         Monster[] monster = new Monster[3];
@@ -32,6 +33,8 @@ public class Game {
 
         // Írj egy ciklust, ami addig tart amíg nincs vége a játéknek (amíg a gameOver nem true) ÉS
         // amíg a karakter élete 0-nál nagyobb!
+
+
         while (gameover != true && player.getHealth() > 0) {
 
         }
@@ -69,10 +72,23 @@ public class Game {
         }
 
         // Írj egy ciklust, ami addig megy, amíg a szörny és a játékos élete is nagyobb mint 0!
-
         // Támadja meg a felhasználó karaktere a szörnyet!
-
         // Ha a szörny élete továbbra is nagyobb, mint 0, akkor a szörny támadjon vissza!
+        while (player.getHealth() > 0 && selectedMonster.getHealth() <= 0) {
+          player.attack(selectedMonster);
+          if (selectedMonster.getHealth() > 0) {
+              selectedMonster.attack(player);
+          }
+          if (player.getHealth() <= 0) {
+              System.out.println("You have been defeated");
+          } else  {
+              System.out.println("Invalid choice");
+          }
+        }
+
+
+
+
 
         // Ha rossz inputot ad meg, írd ki: Invalid choice!
 
